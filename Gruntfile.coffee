@@ -76,7 +76,7 @@ module.exports = ->
     coffeelint:
       components:
         files:
-          src: ['components/*.coffee']
+          src: ['components/*.coffee', 'lib/*.coffee']
         options:
           max_line_length:
             value: 80

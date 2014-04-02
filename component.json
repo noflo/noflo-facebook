@@ -13,6 +13,7 @@
   },
   "scripts": [
     "components/GetPagePosts.coffee",
+    "lib/FbGraphComponent.coffee",
     "index.js"
   ],
   "json": [
