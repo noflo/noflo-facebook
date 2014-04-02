@@ -1,0 +1,27 @@
+{
+  "name": "noflo-facebook",
+  "description": "Facebook components for NoFlo",
+  "author": "Henri Bergius <henri.bergius@iki.fi>",
+  "repo": "noflo/noflo-facebook",
+  "version": "0.1.0",
+  "keywords": [
+  ],
+  "dependencies": {
+    "noflo/noflo": "*",
+    "visionmedia/superagent": "*",
+    "sindresorhus/query-string": "*"
+  },
+  "scripts": [
+    "components/GetPagePosts.coffee",
+    "index.js"
+  ],
+  "json": [
+    "component.json"
+  ],
+  "noflo": {
+    "icon": "facebook",
+    "components": {
+      "GetPagePosts": "components/GetPagePosts.coffee"
+    }
+  }
+}
