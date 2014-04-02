@@ -42,5 +42,8 @@
       "GetPosts": "components/GetPosts.coffee"
     }
   },
+  "scripts": {
+    "test": "grunt test"
+  },
   "keywords": []
 }
