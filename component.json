@@ -12,7 +12,7 @@
     "sindresorhus/query-string": "*"
   },
   "scripts": [
-    "components/GetPagePosts.coffee",
+    "components/GetPosts.coffee",
     "lib/FbGraphComponent.coffee",
     "index.js"
   ],
@@ -22,7 +22,7 @@
   "noflo": {
     "icon": "facebook",
     "components": {
-      "GetPagePosts": "components/GetPagePosts.coffee"
+      "GetPosts": "components/GetPosts.coffee"
     }
   }
 }

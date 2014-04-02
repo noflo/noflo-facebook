@@ -39,7 +39,7 @@
   "noflo": {
     "icon": "facebook",
     "components": {
-      "GetPagePosts": "components/GetPagePosts.coffee"
+      "GetPosts": "components/GetPosts.coffee"
     }
   },
   "keywords": []

@@ -1,11 +1,12 @@
 noflo = require 'noflo'
 FbComponent = require '../lib/FbGraphComponent'
 
-class GetPagePosts extends FbComponent
+class GetPosts extends FbComponent
+  description: 'Fetch posts on a Facebook page or profile'
   constructor: ->
     @includeHidden = false
     @inPorts = new noflo.InPorts
-      page:
+      id:
         datatype: 'string'
         description: 'Page ID'
       hidden:
@@ -15,13 +16,13 @@ class GetPagePosts extends FbComponent
 
     @inPorts.hidden.on 'data', (@includeHidden) =>
 
-    super 'page'
+    super 'id'
 
   getOptions: ->
     options =
       include_hidden: @includeHidden
 
-  getRoute: (pageId) ->
-    "/#{pageId}/posts"
+  getRoute: (id) ->
+    "/#{id}/posts"
 
-exports.getComponent = -> new GetPagePosts
+exports.getComponent = -> new GetPosts
