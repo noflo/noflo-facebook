@@ -49,7 +49,6 @@ describe 'GetPosts component', ->
       out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
         chai.expect(data.data).to.be.an 'array'
-        chai.expect(data.data).not.to.be.empty
         done()
 
       token.send "#{process.env.FACEBOOK_CLIENT_ID}|#{process.env.FACEBOOK_CLIENT_SECRET}"
