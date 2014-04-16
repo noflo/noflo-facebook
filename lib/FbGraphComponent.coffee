@@ -45,7 +45,6 @@ class FbGraphComponent extends noflo.AsyncComponent
       @outPorts.out.beginGroup route
       @outPorts.out.send data
       @outPorts.out.endGroup()
-      @outPorts.out.disconnect()
       callback()
 
   getOptions: ->
