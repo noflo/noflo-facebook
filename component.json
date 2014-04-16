@@ -13,6 +13,7 @@
   },
   "scripts": [
     "components/GetPosts.coffee",
+    "components/GetProfile.coffee",
     "lib/FbGraphComponent.coffee",
     "index.js"
   ],
@@ -22,7 +23,8 @@
   "noflo": {
     "icon": "facebook",
     "components": {
-      "GetPosts": "components/GetPosts.coffee"
+      "GetPosts": "components/GetPosts.coffee",
+      "GetProfile": "components/GetProfile.coffee"
     }
   }
 }

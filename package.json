@@ -1,7 +1,7 @@
 {
   "name": "noflo-facebook",
   "description": "Facebook components for NoFlo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Henri Bergius",
     "email": "henri.bergius@iki.fi"
@@ -39,7 +39,8 @@
   "noflo": {
     "icon": "facebook",
     "components": {
-      "GetPosts": "components/GetPosts.coffee"
+      "GetPosts": "components/GetPosts.coffee",
+      "GetProfile": "components/GetProfile.coffee"
     }
   },
   "scripts": {
