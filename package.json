@@ -34,11 +34,13 @@
     "grunt-contrib-watch": "~0.3.1",
     "component-json": "~0.1.4",
     "grunt-combine": "~0.8.3",
-    "grunt-component": "~0.1.2"
+    "grunt-component": "~0.1.2",
+    "grunt-noflo-manifest": "^0.1.2"
   },
   "noflo": {
     "icon": "facebook",
     "components": {
+      "GetAppToken": "components/GetAppToken.coffee",
       "GetPosts": "components/GetPosts.coffee",
       "GetProfile": "components/GetProfile.coffee"
     }
