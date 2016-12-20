@@ -10,12 +10,7 @@
     "type": "git",
     "url": "git://github.com/noflo/noflo-facebook.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "undefined/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "dependencies": {
     "noflo": "~0.5.0",
     "superagent": "^0.17.0",
@@ -45,5 +40,5 @@
   "scripts": {
     "test": "grunt test"
   },
-  "keywords": []
+  "keywords": ["noflo"]
 }
