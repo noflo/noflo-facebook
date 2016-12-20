@@ -27,19 +27,6 @@ module.exports = ->
         files:
           'browser/noflo-facebook.js': ['component.json']
 
-    # JavaScript minification for the browser
-    uglify:
-      options:
-        report: 'min'
-      noflo:
-        files:
-          './browser/noflo-facebook.min.js': ['./browser/noflo-facebook.js']
-
-    # Automated recompilation and testing when developing
-    watch:
-      files: ['spec/*.coffee', 'components/*.coffee']
-      tasks: ['test']
-
     # BDD tests on Node.js
     cafemocha:
       nodejs:
@@ -68,10 +55,8 @@ module.exports = ->
   @loadNpmTasks 'grunt-noflo-manifest'
   @loadNpmTasks 'grunt-noflo-browser'
   @loadNpmTasks 'grunt-contrib-coffee'
-  @loadNpmTasks 'grunt-contrib-uglify'
 
   # Grunt plugins used for testing
-  @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-cafe-mocha'
   @loadNpmTasks 'grunt-mocha-phantomjs'
   @loadNpmTasks 'grunt-coffeelint'
@@ -82,7 +67,6 @@ module.exports = ->
     @task.run 'noflo_manifest'
     if target is 'all' or target is 'browser'
       @task.run 'noflo_browser'
-      @task.run 'uglify'
 
   @registerTask 'test', 'Build NoFlo and run automated tests', (target = 'all') =>
     @task.run 'coffeelint'
