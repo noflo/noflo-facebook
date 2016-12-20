@@ -40,7 +40,8 @@ describe 'GetProfile component', ->
       token.send "#{process.env.FACEBOOK_CLIENT_ID}|#{process.env.FACEBOOK_CLIENT_SECRET}"
       id.send 'noflo'
 
-  describe 'fetching a user', ->
+  describe.skip 'fetching a user', ->
+    # Fetching user by username was removed in FB API 2.x
     it 'should be able to get details', (done) ->
       unless process.env.FACEBOOK_CLIENT_ID
         chai.expect(false).to.equal true

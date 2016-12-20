@@ -37,7 +37,7 @@ describe 'GetPosts component', ->
       token.send "#{process.env.FACEBOOK_CLIENT_ID}|#{process.env.FACEBOOK_CLIENT_SECRET}"
       id.send 'noflo'
 
-  describe 'listing posts of a profile', ->
+  describe 'listing posts of a page', ->
     it 'should be able to retrieve a list', (done) ->
       unless process.env.FACEBOOK_CLIENT_ID
         chai.expect(false).to.equal true
@@ -52,4 +52,4 @@ describe 'GetPosts component', ->
         done()
 
       token.send "#{process.env.FACEBOOK_CLIENT_ID}|#{process.env.FACEBOOK_CLIENT_SECRET}"
-      id.send 'bergius'
+      id.send 'noflo'
