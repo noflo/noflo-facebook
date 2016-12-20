@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "noflo": "0.x >= 0.5",
-    "superagent": "^0.17.0",
+    "superagent": "^1.5.0",
     "query-string": "^0.3.0"
   },
   "devDependencies": {
