@@ -12,6 +12,7 @@ describe 'GetAppToken component', ->
   id = null
   secret = null
   token = null
+  error = null
   before (done) ->
     @timeout 4000
     chai.expect(process.env.FACEBOOK_CLIENT_ID, 'FB client ID').to.exist
@@ -28,11 +29,15 @@ describe 'GetAppToken component', ->
   beforeEach ->
     token = noflo.internalSocket.createSocket()
     c.outPorts.token.attach token
+    error = noflo.internalSocket.createSocket()
+    c.outPorts.error.attach error
   afterEach ->
     c.outPorts.token.detach token
+    c.outPorts.error.detach error
 
   describe 'getting a token', ->
     it 'should be able to provide one', (done) ->
+      error.on 'data', done
       token.on 'data', (data) ->
         chai.expect(data).to.be.a 'string'
         done()
