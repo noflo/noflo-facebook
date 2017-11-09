@@ -1,8 +1,6 @@
 language: node_js
 node_js:
-- '4.6'
-before_script:
-- npm install -g grunt-cli
+- '6'
 env:
   global:
   - secure: m35PKx0pYqwOq/99yO+Eas+49IA0WpJGEbtX4jhQgLXpYT09+QN1ZrqyH7bwzI1h0X/ivVThuNl7izewlSlwiru6Q+PtSek/zGIPKT3D/i0fOs4PzKnfe9xoIQhRd6o+MRfgrllzwwZQstYRe7L/XezeXUM0zlC0XkE6vJ+lV6g=
@@ -11,7 +9,7 @@ deploy:
   provider: npm
   email: henri.bergius@iki.fi
   api_key:
-    secure: YBdnpXf9CvPFu4Id3bxRWXfe6ImcsHnS1iQ9qFbREmPUcccVThqpRiliARBscPetwp8LWAOwiGcKGC9CObEG0SxxKkqPxWTPlWlLQbvr+FgWq5fCLk2d37TOW2qNNoCjBKwVjN4dLv5eDgFpqV1SfVrybBiOgQKT2HpJtnk0yH4=
+    secure: ZgsSl8j2U0ztX7zKMd78Y6NGqWDZ5B+DvWGS4KNBNAxkV7W0awlnqD59CCY6NV/nEjPcQgnnhfCXJOshG5ptCHQZ+2cfJMO/nuPPXtbsIO5oBcFTm6JWqojQ7SoNttF8MK+BLMnMmGb7QThIaxHvdpEaKZPzKwmJ13dyMDGQwnw=
   on:
     tags: true
     repo: noflo/noflo-facebook

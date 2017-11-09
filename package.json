@@ -12,35 +12,21 @@
   },
   "license": "MIT",
   "dependencies": {
-    "noflo": "0.x >= 0.5",
-    "superagent": "^3.3.1",
-    "query-string": "^4.2.3"
+    "noflo": "^1.0.0",
+    "superagent": "^3.8.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coffee-loader": "^0.7.2",
-    "coffee-script": "^1.12.2",
-    "fbp-loader": "^0.1.1",
-    "grunt": "^1.0.1",
-    "grunt-coffeelint": "^0.0.16",
-    "grunt-contrib-coffee": "^1.0.0",
-    "grunt-mocha-phantomjs": "^4.0.0",
-    "grunt-mocha-test": "^0.13.2",
-    "grunt-noflo-browser": "^1.0.1",
-    "grunt-noflo-manifest": "^0.1.12",
-    "json-loader": "^0.5.4",
-    "mocha": "^3.2.0"
+    "chai": "^4.0.0",
+    "coffeelint": "^2.0.7",
+    "coffeescript": "^2.0.2",
+    "mocha": "^4.0.0"
   },
   "noflo": {
-    "icon": "facebook",
-    "components": {
-      "GetAppToken": "components/GetAppToken.coffee",
-      "GetPosts": "components/GetPosts.coffee",
-      "GetProfile": "components/GetProfile.coffee"
-    }
+    "icon": "facebook"
   },
   "scripts": {
-    "test": "grunt test"
+    "pretest": "coffeelint -f .coffeelint.json -r components",
+    "test": "mocha --require coffeescript/register -R spec -t 2000 spec/*.coffee"
   },
   "keywords": [
     "noflo"

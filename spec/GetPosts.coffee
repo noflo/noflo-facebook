@@ -1,33 +1,42 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  GetPosts = require '../components/GetPosts.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  GetPosts = require 'noflo-facebook/components/GetPosts.js'
+  baseDir = 'noflo-objects'
 
 describe 'GetPosts component', ->
   c = null
-  token = null
   id = null
+  token = null
   out = null
+  error = null
+  before (done) ->
+    @timeout 4000
+    chai.expect(process.env.FACEBOOK_CLIENT_ID, 'FB client ID').to.exist
+    chai.expect(process.env.FACEBOOK_CLIENT_SECRET, 'FB client secret').to.exist
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'facebook/GetPosts', (err, instance) ->
+      return done err if err
+      c = instance
+      token = noflo.internalSocket.createSocket()
+      id = noflo.internalSocket.createSocket()
+      c.inPorts.token.attach token
+      c.inPorts.id.attach id
+      done()
   beforeEach ->
-    c = GetPosts.getComponent()
-    token = noflo.internalSocket.createSocket()
-    id = noflo.internalSocket.createSocket()
     out = noflo.internalSocket.createSocket()
-    c.inPorts.token.attach token
-    c.inPorts.id.attach id
     c.outPorts.out.attach out
+    error = noflo.internalSocket.createSocket()
+    c.outPorts.error.attach error
+  afterEach ->
+    c.outPorts.out.detach out
+    c.outPorts.error.detach error
 
   describe 'listing posts of a page', ->
     it 'should be able to retrieve a list', (done) ->
-      unless process.env.FACEBOOK_CLIENT_ID
-        chai.expect(false).to.equal true
-        return done()
-      unless process.env.FACEBOOK_CLIENT_SECRET
-        chai.expect(false).to.equal true
-        return done()
-
+      error.on 'data', done
       out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
         chai.expect(data.data).to.be.an 'array'
@@ -39,13 +48,6 @@ describe 'GetPosts component', ->
 
   describe 'listing posts of a page', ->
     it 'should be able to retrieve a list', (done) ->
-      unless process.env.FACEBOOK_CLIENT_ID
-        chai.expect(false).to.equal true
-        return done()
-      unless process.env.FACEBOOK_CLIENT_SECRET
-        chai.expect(false).to.equal true
-        return done()
-
       out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
         chai.expect(data.data).to.be.an 'array'
