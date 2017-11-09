@@ -1,45 +1,36 @@
 noflo = require 'noflo'
 superagent = require 'superagent'
-qs = require 'query-string'
+qs = require 'querystring'
 
-class GetAppToken extends noflo.AsyncComponent
-  description: 'Get a app-specific authentication token'
-  constructor: ->
-    @secret = null
-    @host = 'https://graph.facebook.com'
-    @inPorts = new noflo.InPorts
-      id:
-        datatype: 'string'
-        description: 'Client ID'
-      secret:
-        datatype: 'string'
-        description: 'Client Secret'
-    @outPorts = new noflo.OutPorts
-      token:
-        datatype: 'string'
-      error:
-        datatype: 'object'
-
-    @inPorts.secret.on 'data', (@secret) =>
-
-    super 'id', 'token'
-
-  doAsync: (id, callback) ->
-    unless @secret
-      callback new Error 'No client secret provided'
-      return
-
-    type = 'client_credentials'
+exports.getComponent = ->
+  c = new noflo.Component
+  c.description = 'Get a app-specific authentication token'
+  c.inPorts.add 'id',
+    datatype: 'string'
+    description: 'Client ID'
+  c.inPorts.add 'secret',
+    datatype: 'string'
+    description: 'Client Secret'
+  c.outPorts.add 'token',
+    datatype: 'string'
+  c.outPorts.add 'error',
+    datatype: 'object'
+  c.forwardBrackets =
+    id: ['token', 'secret']
+  c.process (input, output) ->
+    return unless input.hasData 'id', 'secret'
+    [id, secret] = input.getData 'id', 'secret'
+    host = 'https://graph.facebook.com'
     route = '/oauth/access_token'
-
-    superagent.get "#{@host}#{route}?grant_type=#{type}&client_id=#{id}&client_secret=#{@secret}"
-    .end (err, res) =>
-      return callback err if err
+    params = querystring.stringify
+      grant_type: 'client_credentials'
+      client_id: id
+      client_secret: secret
+    superagent.get "#{host}#{route}?#{params}"
+    .end (err, res) ->
+      return output.done err if err
       data = qs.parse res.text
       unless data.access_token
-        return callback new Error 'No access token received'
-      @outPorts.token.send data.access_token
-      @outPorts.token.disconnect()
-      callback()
-
-exports.getComponent = -> new GetAppToken
+        return output.done new Error 'No access token received'
+      output.sendDone
+        token: data.access_token
