@@ -32,11 +32,11 @@ exports.getComponent = ->
       hidden = input.getData 'hidden'
     host = 'https://graph.facebook.com'
     route = "/#{id}/posts"
-    params = querystring.stringify
+    params = qs.stringify
       include_hidden: hidden
       access_token: token
     superagent.get "#{host}#{route}?#{params}"
     .end (err, res) ->
       return output.done err if err
-      data = qs.parse res.text
+      data = JSON.parse res.text
       output.sendDone data

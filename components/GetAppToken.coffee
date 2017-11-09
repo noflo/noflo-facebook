@@ -22,14 +22,14 @@ exports.getComponent = ->
     [id, secret] = input.getData 'id', 'secret'
     host = 'https://graph.facebook.com'
     route = '/oauth/access_token'
-    params = querystring.stringify
+    params = qs.stringify
       grant_type: 'client_credentials'
       client_id: id
       client_secret: secret
     superagent.get "#{host}#{route}?#{params}"
     .end (err, res) ->
       return output.done err if err
-      data = qs.parse res.text
+      data = JSON.parse res.text
       unless data.access_token
         return output.done new Error 'No access token received'
       output.sendDone
