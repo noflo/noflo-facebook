@@ -14,7 +14,7 @@
   "dependencies": {
     "noflo": "0.x >= 0.5",
     "superagent": "^3.8.1",
-    "query-string": "^4.2.3"
+    "query-string": "^5.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
